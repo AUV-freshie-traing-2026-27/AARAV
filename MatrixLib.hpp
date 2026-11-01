@@ -25,15 +25,20 @@ public:
 	vector<double> getColumn(int i);
 	double getElement(int i,int j);
 	void display();
+
+
 };
 
-
-
-/*class matrix_operations{
-public:
 	vcc addMatrix(vcc A,vcc B);
 	vcc multiplyMatrix(vcc A,vcc B);	
 	void invertMatrix(vcc A);
 
-};*/
+	vcc operator+ (vcc lhs,vcc rhs) 
+	{
+	 return addMatrix(lhs,rhs);
+	}
 
+	vcc operator* (vcc lhs,vcc rhs)
+	{
+	return multiplyMatrix(lhs,rhs);
+	}

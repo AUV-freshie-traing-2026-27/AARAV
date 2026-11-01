@@ -3,14 +3,16 @@
 
 
 //Constructors
-matrix_init::matrix_init(int m,int n){arr.resize(m,vector<double>(n));}
+matrix_init::matrix_init(int m,int n){arr.resize(m,vector<double>(n));
+	cout<<"matrix size set "<<arr.size()<<"*"<<arr[0].size()<<endl;}
 matrix_init::matrix_init(vcc something){arr.swap(something);}
+
 
 
 //set Functions
 void matrix_init::setMatrix(vcc name){arr.swap(name);}
 void matrix_init::setRow(int i,vector<double> val){arr[i].swap(val);}
-void matrix_init::setColumn(int i,vector<double> val){for(int k=0;k<arr.size();k++){arr[k][i]=val[k];}}
+void matrix_init::setColumn(int i,vector<double> val){for(int k=0;k<arr.size();k++){arr[k][i]=val[k];}cout<<1;}
 void matrix_init::setElement(int i,int j,double val){arr[i][j]=val;}
 
 
@@ -21,30 +23,39 @@ vector<double> matrix_init::getColumn(int i){
 	vector<double> p;
 	for(int k=0;k<arr.size();k++){p.push_back(arr[k][i]);}
 	return p;
+	cout<<222222;
 	}
 double matrix_init::getElement(int i,int j){return arr[i][j];}
 void matrix_init::display(){
-	for(vector<double> x : arr){
-		for(double y:x){
-			cout<<y<<",";
+
+	for(int i=0;i<arr.size();i++){
+		for(int j=0;j<arr[0].size();j++){
+			cout<<" "<<arr[i][j];
 		}
-		cout<<"}\n{";
+		cout<<"\n";
 	}
 }
 
 
-/*vcc matrix_operations::addMatrix(vcc A,vcc B){
-	vcc p;
+vcc addMatrix(vcc A,vcc B){
+	matrix_init p(A);
+       
 	for(int i=0;i<A.size();i++){
 		for(int j=0;j<A[0].size();j++){
-			p[i][j]=A[i][j]+B[i][j];
+			p.setElement(i,j,A[i][j]+B[i][j]);
+			
 		}
+		
 	}
-	return p;
+	return p.getMatrix();
 }
 
 
-vcc matrix_operations::multiplyMatrix(vcc A,vcc B){*/
+vcc matrix_operations::multiplyMatrix(vcc A,vcc B){
+   
+
+
+}
 	
 
 
