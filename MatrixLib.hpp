@@ -33,9 +33,9 @@ public:
 	vcc multiplyMatrix(vcc A,vcc B);	
 	void invertMatrix(vcc A);
 
-	vcc operator+ (vcc lhs,vcc rhs) 
+	vcc operator+ (const vcc& lhs,const vcc& rhs) 
 	{
-	 return addMatrix(lhs,rhs);
+	 return vcc{addMatrix(lhs,rhs)};
 	}
 
 	vcc operator* (vcc lhs,vcc rhs)

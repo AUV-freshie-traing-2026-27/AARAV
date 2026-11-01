@@ -54,11 +54,12 @@ yeleh.display();
 }
 else{cout<<"addition not possible";}
 
-
+if(b1==a2){
 cout<<endl<<"performing operation multiplication"<<endl<<endl;
-mantrix_init yehbhileh(M1.getMatrix()*M2.getMatrix());
+matrix_init yehbhileh(M1.getMatrix()*M2.getMatrix());
 yehbhileh.display();
-
+}
+else{cout<<"multiplication not possible";}
 return 0;
 }
 
