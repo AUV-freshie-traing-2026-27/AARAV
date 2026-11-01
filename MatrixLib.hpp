@@ -24,15 +24,16 @@ public:
 	vector<double> getRow(int i);
 	vector<double> getColumn(int i);
 	double getElement(int i,int j);
+	void display();
 };
 
 
 
-class matrix_operations{
+/*class matrix_operations{
 public:
 	vcc addMatrix(vcc A,vcc B);
 	vcc multiplyMatrix(vcc A,vcc B);	
 	void invertMatrix(vcc A);
 
-};
+};*/
 
