@@ -1,29 +1,43 @@
 #include "MatrixLib.hpp"
 
 
-using namespace matrix_operations;
-using namespace matrix_init;
+
 //Constructors
-matrix(m,n){data.resize(m);for(int i=0;i<m;i++){data[i].resize(n);}
-matrix(something){data.swap(something);}
+matrix_init::matrix_init(int m,int n){arr.resize(m);for(int i=0;i<m;i++){arr[i].resize(n);}}
+matrix_init::matrix_init(vcc something){arr.swap(something);}
 
 
 //set Functions
-void setMatrix(vector<vector<T>> name){data.swap(name);}
-void setRow( i,val){data[i].swap(val[i]);}
-void setColumn(i, val){for(int k=0;k<data.size()){data[k][i]=val[k];}
-void setElement(i,j,val){data[i][j]=val;}
+void matrix_init::setMatrix(vcc name){arr.swap(name);}
+void matrix_init::setRow(int i,vector<double> val){arr[i].swap(val[i]);}
+void matrix_init::setColumn(int i,vector<double> val){for(int k=0;k<arr.size();k++){arr[k][i]=val[k];}}
+void matrix_init::setElement(int i,int j,double val){arr[i][j]=val;}
 
 
 //get Functions	
-vector<vector<T>> getMatrix(){return data;}
-vector<T> getRow(int i){return data[i];}
-vector<T> getColumn(int i){
-	vector<T> p;
-	for(int k=0;k<data.size();k++){p.pushback(data[k][i]);};
+vcc getMatrix(){return arr;}
+vector<double> matrix_init::getRow(int i){return arr[i];}
+vector<double> matrix_init::getColumn(int i){
+	vector<double> p;
+	for(int k=0;k<arr.size();k++){p.push_back(arr[k][i]);}
 	return p;
 	}
-T matrix_init::getElement(i,j){return data[i][j];}
+double matrix_init::getElement(int i,int j){return arr[i][j];}
+
+
+vcc matrix_operations::addMatrix(vcc A,vcc B){
+	vcc p;
+	for(int i=0;i<A.size();i++){
+		for(int j=0;j<A[0].size();j++){
+			p[i][j]=A[i][j]+B[i][j];
+		}
+	}
+	return p;
+}
+
+
+vcc matrix_operations::multiplyMatrix(vcc A,vcc B){
+	
 
 
 
