@@ -4,6 +4,10 @@
 using namespace std;
 using vcc =vector<vector<double>>;
 
+	vcc addMatrix(vcc A,vcc B);
+	vcc multiplyMatrix(vcc A,vcc B);	
+	void invertMatrix(vcc A);
+
 
 class matrix_init{
 public:
@@ -27,18 +31,15 @@ public:
 	void display();
 
 
+	matrix_init operator+ (const matrix_init rhs) 
+	{
+	 return matrix_init(addMatrix(arr,rhs.arr));
+	}
+
+	matrix_init operator* (const matrix_init rhs)
+	{
+	return matrix_init(multiplyMatrix(arr,rhs.arr));
+	}
 };
 
-	vcc addMatrix(vcc A,vcc B);
-	vcc multiplyMatrix(vcc A,vcc B);	
-	void invertMatrix(vcc A);
 
-	vcc operator+ (const vcc& lhs,const vcc& rhs) 
-	{
-	 return vcc{addMatrix(lhs,rhs)};
-	}
-
-	vcc operator* (vcc lhs,vcc rhs)
-	{
-	return multiplyMatrix(lhs,rhs);
-	}

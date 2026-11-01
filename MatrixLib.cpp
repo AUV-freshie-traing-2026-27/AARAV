@@ -52,13 +52,13 @@ vcc addMatrix(vcc A,vcc B){
 
 
 vcc multiplyMatrix(vcc A,vcc B){
-  vcc p(A.size(),vector<double>(A[0].size()));
+  vcc p(A.size(),vector<double>(B[0].size()));
 
  for(int i=0;i<A.size();i++){
-	for(int j=0;j<A[0].size();j++){
+	for(int j=0;j<B[0].size();j++){
 	       double sum=0;
        		for(int k=0;k<A.size();k++){
-	 sum=sum+A[i][k]+B[k][j];		
+	 sum=sum+A[i][k]*B[k][j];		
 		}
 	p[i][j]=sum;
 	}

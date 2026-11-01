@@ -49,15 +49,15 @@ for(int i=0;i<a2;i++){
 //Executing operations
 if(a1==a2&&b1==b2){
 cout<<endl<<"performing operation addition"<<endl<<endl;
-matrix_init yeleh(M1.getMatrix()+M2.getMatrix());
-yeleh.display();
+matrix_init out1=M1+M2;
+out1.display();
 }
 else{cout<<"addition not possible";}
 
 if(b1==a2){
 cout<<endl<<"performing operation multiplication"<<endl<<endl;
-matrix_init yehbhileh(M1.getMatrix()*M2.getMatrix());
-yehbhileh.display();
+matrix_init out2=M1*M2;
+out2.display();
 }
 else{cout<<"multiplication not possible";}
 return 0;
