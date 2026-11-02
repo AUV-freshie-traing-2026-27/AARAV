@@ -1,17 +1,22 @@
+#ifndef MATRIXLIB_H
+#define MATRILIB_H
+
 #include <iostream>
 #include <vector>		
 
 using namespace std;
 using vcc =vector<vector<double>>;
-
+//Matrix operations and COnvenience functions
 	vcc addMatrix(vcc A,vcc B);
 	vcc multiplyMatrix(vcc A,vcc B);	
-	void invertMatrix(vcc A);
-
+	vector<double> addVector(vector<double> A, vector<double> B);
+	vector<double> multVector(vector<double> A,vector<double> B);
+	vector<double> multVector(vector<double> A,double B);
 
 class matrix_init{
 public:
 	vcc arr ;
+	//constructors
 	matrix_init(int m,int n);
 	matrix_init(vcc something);
 
@@ -30,7 +35,7 @@ public:
 	double getElement(int i,int j);
 	void display();
 
-
+	//matrix operations
 	matrix_init operator+ (const matrix_init rhs) 
 	{
 	 return matrix_init(addMatrix(arr,rhs.arr));
@@ -40,6 +45,9 @@ public:
 	{
 	return matrix_init(multiplyMatrix(arr,rhs.arr));
 	}
+
+//Inverse
+void invert();
 };
 
-
+#endif

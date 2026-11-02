@@ -1,3 +1,4 @@
+
 #include "MatrixLib.hpp"
 
 
@@ -23,7 +24,6 @@ vector<double> matrix_init::getColumn(int i){
 	vector<double> p;
 	for(int k=0;k<arr.size();k++){p.push_back(arr[k][i]);}
 	return p;
-	cout<<222222;
 	}
 double matrix_init::getElement(int i,int j){return arr[i][j];}
 void matrix_init::display(){
@@ -35,7 +35,7 @@ void matrix_init::display(){
 		cout<<"\n";
 	}
 }
-
+//Matrix operations
 
 vcc addMatrix(vcc A,vcc B){
 	matrix_init p(A);
@@ -57,7 +57,7 @@ vcc multiplyMatrix(vcc A,vcc B){
  for(int i=0;i<A.size();i++){
 	for(int j=0;j<B[0].size();j++){
 	       double sum=0;
-       		for(int k=0;k<A.size();k++){
+       		for(int k=0;k<A[0].size();k++){
 	 sum=sum+A[i][k]*B[k][j];		
 		}
 	p[i][j]=sum;
@@ -65,6 +65,31 @@ vcc multiplyMatrix(vcc A,vcc B){
  }
 return p;
 }
+
+//Convienice functions
+vector<double> addVector(vector<double> A,vector<double> B){
+	vector<double> p;
+	if(A.size()!=B.size()){cout<<"Vector cannot be added \n";}
+	else{for(int i=0;i<A.size();i++){p.push_back(A[i]+B[i]);}}
+	return p;
+}
+
+vector<double> multVector(vector<double> A,vector<double> B){
+	vector<double> p;
+	if(A.size()!=B.size()){cout<<"Vectors cannot be multiplied";}
+	else{for(int i=0;i<A.size();i++){p.push_back(A[i]*B[i]);}}
+	return p;
+
+
+}
+vector<double> multVector(vector<double> A,double B){
+	vector<double> p;
+	for(int i=0;i<A.size();i++){p.push_back(A[i]*B);}
+	return p;
+
+}
+//Matrix inversion
+
 
 
 

@@ -1,9 +1,8 @@
-#pragma once
 #include <iostream>
 #include <vector>
 #include "MatrixLib.hpp"
 #include <string>
-
+using namespace std;
 int main(){
 cout<<"int main has started \n";
        
