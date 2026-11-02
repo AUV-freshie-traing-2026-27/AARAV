@@ -51,7 +51,7 @@ cout<<endl<<"performing operation addition"<<endl<<endl;
 matrix_init out1=M1+M2;
 out1.display();
 }
-else{cout<<"addition not possible";}
+else{cout<<"\n addition not possible";}
 
 if(b1==a2){
 cout<<endl<<"performing operation multiplication"<<endl<<endl;
