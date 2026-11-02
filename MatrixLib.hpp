@@ -47,6 +47,7 @@ public:
 	}
 
 //Inverse
+matrix_init Identity();
 void invert();
 };
 

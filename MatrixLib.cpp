@@ -88,7 +88,22 @@ vector<double> multVector(vector<double> A,double B){
 	return p;
 
 }
+
 //Matrix inversion
+matrix_init matrix_init::Identity(){
+if(A.size()!=A[0].size()){cout<<"\n matrix is not square\n ";}
+else{
+matrix_init Identity(A.size(),A.size());
+for(int i=0;i<arr[0].size();i++){
+        for(int j=0;j<arr[0].size();j++){
+                if(i==j){Identity.setElement(i,j)=1;}
+                else{Identity.setElement(i,j)=0;}
+                }
+
+        }
+}
+}
+
 
 
 
