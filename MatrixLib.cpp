@@ -67,42 +67,67 @@ return p;
 }
 
 //Convienice functions
-vector<double> addVector(vector<double> A,vector<double> B){
-	vector<double> p;
-	if(A.size()!=B.size()){cout<<"Vector cannot be added \n";}
-	else{for(int i=0;i<A.size();i++){p.push_back(A[i]+B[i]);}}
-	return p;
+void addVector(vector<double>& A,vector<double> B){
+	if((A).size()!=B.size()){cout<<"Vector cannot be added \n";}
+	else{for(int i=0;i<(A).size();i++){A[i]=(A[i]+B[i]);}}
 }
 
-vector<double> multVector(vector<double> A,vector<double> B){
-	vector<double> p;
+void multVector(vector<double>& A,vector<double> B){
 	if(A.size()!=B.size()){cout<<"Vectors cannot be multiplied";}
-	else{for(int i=0;i<A.size();i++){p.push_back(A[i]*B[i]);}}
-	return p;
-
+	else{for(int i=0;i<A.size();i++){A[i]=(A[i]*B[i]);}}
 
 }
-vector<double> multVector(vector<double> A,double B){
-	vector<double> p;
-	for(int i=0;i<A.size();i++){p.push_back(A[i]*B);}
-	return p;
+void multVector(vector<double>& A,double B){
+	for(int i=0;i<A.size();i++){A[i]=(A[i]*B);}
 
 }
 
 //Matrix inversion
 matrix_init matrix_init::Identity(){
-if(A.size()!=A[0].size()){cout<<"\n matrix is not square\n ";}
+
+if(arr.size()!=arr[0].size()){cout<<"\n matrix is not square\n ";}
 else{
-matrix_init Identity(A.size(),A.size());
+matrix_init p(arr.size(),arr.size());
 for(int i=0;i<arr[0].size();i++){
         for(int j=0;j<arr[0].size();j++){
-                if(i==j){Identity.setElement(i,j)=1;}
-                else{Identity.setElement(i,j)=0;}
+                if(i==j){p.setElement(i,j,1);}
+                else{p.setElement(i,j,0);}
                 }
 
         }
+return p;   }
 }
+
+void matrix_init::invert(matrix_init& M){
+try{    if(arr.size()!=arr[0].size()){ throw 345; }
+	else{
+	for(int i=0;i<arr.size();i++){
+		for(int k=0;k<arr.size();k++){
+			if(k<i){  }
+			else if(k==i){
+		 		if(arr[k][i]==0){throw 000; }
+				else if(arr[k][i]!=1){multVector(arr[k],1/arr[k][i]);}		
+			}
+			else if(k>i){
+				if(arr[k][i]!=0){
+				vector<double> p=arr[i];
+				multVector(p,arr[k][i]);
+				multVector(p,-1);
+				addVector(arr[k],p);}
+				M.display();cout<<endl;
+			}
+	       }
+	}
 }
+}catch(int myNum){
+	cout<<"Error : "<<myNum<<endl;
+	if(myNum==345){cout<<"Matrix is not square, inverse does not existi\n";}
+	else{cout<<"Matirx not invertible, determinant is zero";}
+	}
+}
+
+
+
 
 
 

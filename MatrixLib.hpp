@@ -9,9 +9,9 @@ using vcc =vector<vector<double>>;
 //Matrix operations and COnvenience functions
 	vcc addMatrix(vcc A,vcc B);
 	vcc multiplyMatrix(vcc A,vcc B);	
-	vector<double> addVector(vector<double> A, vector<double> B);
-	vector<double> multVector(vector<double> A,vector<double> B);
-	vector<double> multVector(vector<double> A,double B);
+	void addVector(vector<double>& A, vector<double> B);
+	void multVector(vector<double>& A,vector<double> B);
+	void multVector(vector<double>& A,double B);
 
 class matrix_init{
 public:
@@ -48,7 +48,7 @@ public:
 
 //Inverse
 matrix_init Identity();
-void invert();
+void invert(matrix_init& M);
 };
 
 #endif
