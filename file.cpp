@@ -7,20 +7,20 @@ int main(){
 
 int a; int b;
 cout<<"Give Matrix Dimensions\n";
-a=4;b=4;
+cin>>a>>b;
 matrix_init M(a,b);
 int k=1;
 for(int i=0;i<a;i++){
         for(int j=0;j<b;j++){
                 cout<<"taking input for matrix ";
-                M.setElement(i,j,k);k++;
-        }
+               double k;cin>>k;
+		M.setElement(i,j,k);
+	}
 }
-M.setElement(1,1,7);
 cout<<endl<<endl;
 M.display();
 cout<<endl<<endl;
-M.invert(M);
+M.invert();
 cout<<endl<<endl;
 M.display();
 return 0;

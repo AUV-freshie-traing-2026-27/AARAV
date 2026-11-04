@@ -82,44 +82,49 @@ void multVector(vector<double>& A,double B){
 
 }
 
-//Matrix inversion
-matrix_init matrix_init::Identity(){
+			//Matrix inversion
 
-if(arr.size()!=arr[0].size()){cout<<"\n matrix is not square\n ";}
+void matrix_init::invert(){
+//Identity Matrix
+
+vcc Iden(arr.size(),vector<double>(arr.size()));
+try{
+if(arr.size()!=arr[0].size()){cout<<"\n matrix is not square\n ";throw 345;}
 else{
-matrix_init p(arr.size(),arr.size());
 for(int i=0;i<arr[0].size();i++){
         for(int j=0;j<arr[0].size();j++){
-                if(i==j){p.setElement(i,j,1);}
-                else{p.setElement(i,j,0);}
+                if(i==j){Iden[i][j]=1;}
+                else{Iden[i][j]=0;}
                 }
 
         }
-return p;   }
 }
 
-void matrix_init::invert(matrix_init& M){
 //Row echelon form
-try{    if(arr.size()!=arr[0].size()){ throw 345; }
+    if(arr.size()!=arr[0].size()){ throw 345; }
 	else{
-	for(int i=0;i<arr.size();i++){
+	for(int i=0;i<arr.size();i++){ 
 		for(int k=0;k<arr.size();k++){
-			if(k<i){  }
-			else if(k==i){
-		 		if(arr[k][i]==0){throw 000; }
-				else if(arr[k][i]!=1){multVector(arr[k],1/arr[k][i]);}		
-			
+			 if(k==i){
+			if(arr[k][i]==0){throw 000; }
+			else if(arr[k][i]!=1){double val=arr[k][i];multVector(arr[k],1/val);multVector(Iden[k],1/val);}
 			}
-			else if(k>i){
+			else if (k>i){
 				if(arr[k][i]!=0){
-				vector<double> p=arr[i];
-				multVector(p,arr[k][i]);
-				multVector(p,-1);
-				addVector(arr[k],p);}
-				M.display();cout<<endl;
-
+				vector<double> p=arr[i];vector<double> s=Iden[i];
+				multVector(p,arr[k][i]);multVector(s,arr[k][i]);
+				multVector(p,-1);multVector(s,-1);
+				addVector(arr[k],p);addVector(Iden[k],s);}
 			}
-	       }
+/*	//Printing Between Changes              //Here
+for(int i=0;i<arr.size();i++){
+cout<<endl;
+for(int j=0;j<arr.size();j++){cout<<arr[i][j]<<"\t";}
+cout<<" | ";
+for(int j=0;j<arr.size();j++){cout<<Iden[i][j]<<" ";}
+}
+//BaS IDHAR TAK                                //Here*/
+		 }
 	}
 }
 }catch(int myNum){
@@ -132,14 +137,15 @@ try{    if(arr.size()!=arr[0].size()){ throw 345; }
 for(int i=arr.size()-1;i>=0;i--){
 	for(int k=0;k<arr.size();k++){
 		if(k<i&&arr[k][i]!=0){
-		vector<double> p=arr[i];
-		multVector(p,arr[k][i]);
-		multVector(p,-1);
-		addVector(arr[k],p);
+		vector<double> p=arr[i];vector<double> s=Iden[i];
+		multVector(p,arr[k][i]);multVector(s,arr[k][i]);
+		multVector(p,-1);multVector(s,-1);
+		addVector(arr[k],p);addVector(Iden[k],s);
 		 }	
 	}
 }
-
+cout<<endl<<endl<<endl<<endl;
+swap(arr,Iden);
 }
 
 

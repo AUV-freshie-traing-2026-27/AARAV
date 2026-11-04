@@ -47,8 +47,8 @@ public:
 	}
 
 //Inverse
-matrix_init Identity();
-void invert(matrix_init& M);
+vcc Identity();
+void invert();
 };
 
 #endif
