@@ -59,6 +59,10 @@ matrix_init out2=M1*M2;
 out2.display();
 }
 else{cout<<"multiplication not possible";}
+
+M1.invert();
+cout<<"The inverse of "<<name1<<endl;
+M1.display();
 return 0;
 }
 
