@@ -7,7 +7,7 @@ int main(){
 
 int a; int b;
 cout<<"Give Matrix Dimensions\n";
-a=3;b=3;
+a=4;b=4;
 matrix_init M(a,b);
 int k=1;
 for(int i=0;i<a;i++){
@@ -16,7 +16,7 @@ for(int i=0;i<a;i++){
                 M.setElement(i,j,k);k++;
         }
 }
-M.setElement(2,2,10);
+M.setElement(1,1,7);
 cout<<endl<<endl;
 M.display();
 cout<<endl<<endl;

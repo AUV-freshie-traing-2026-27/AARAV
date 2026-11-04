@@ -30,7 +30,7 @@ void matrix_init::display(){
 
 	for(int i=0;i<arr.size();i++){
 		for(int j=0;j<arr[0].size();j++){
-			cout<<" "<<arr[i][j];
+			cout<<arr[i][j]<<"\t";
 		}
 		cout<<"\n";
 	}
@@ -99,6 +99,7 @@ return p;   }
 }
 
 void matrix_init::invert(matrix_init& M){
+//Row echelon form
 try{    if(arr.size()!=arr[0].size()){ throw 345; }
 	else{
 	for(int i=0;i<arr.size();i++){
@@ -107,6 +108,7 @@ try{    if(arr.size()!=arr[0].size()){ throw 345; }
 			else if(k==i){
 		 		if(arr[k][i]==0){throw 000; }
 				else if(arr[k][i]!=1){multVector(arr[k],1/arr[k][i]);}		
+			
 			}
 			else if(k>i){
 				if(arr[k][i]!=0){
@@ -115,6 +117,7 @@ try{    if(arr.size()!=arr[0].size()){ throw 345; }
 				multVector(p,-1);
 				addVector(arr[k],p);}
 				M.display();cout<<endl;
+
 			}
 	       }
 	}
@@ -124,6 +127,19 @@ try{    if(arr.size()!=arr[0].size()){ throw 345; }
 	if(myNum==345){cout<<"Matrix is not square, inverse does not existi\n";}
 	else{cout<<"Matirx not invertible, determinant is zero";}
 	}
+
+//Reduced Row echelon
+for(int i=arr.size()-1;i>=0;i--){
+	for(int k=0;k<arr.size();k++){
+		if(k<i&&arr[k][i]!=0){
+		vector<double> p=arr[i];
+		multVector(p,arr[k][i]);
+		multVector(p,-1);
+		addVector(arr[k],p);
+		 }	
+	}
+}
+
 }
 
 
