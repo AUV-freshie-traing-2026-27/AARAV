@@ -2,7 +2,8 @@
 #define MATRILIB_H
 
 #include <iostream>
-#include <vector>		
+#include <vector>	
+
 
 using namespace std;
 using vcc =vector<vector<double>>;
@@ -50,4 +51,6 @@ public:
 void invert();
 };
 
+//Linear algebra
+vector<double> getX(vcc A, vcc B);
 #endif

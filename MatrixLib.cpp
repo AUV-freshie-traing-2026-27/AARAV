@@ -1,7 +1,6 @@
-
 #include "MatrixLib.hpp"
 
-
+//arr[k][i] k changes row i changes column
 
 //Constructors
 matrix_init::matrix_init(int m,int n){arr.resize(m,vector<double>(n));
@@ -82,11 +81,15 @@ void multVector(vector<double>& A,double B){
 
 }
 
-			//Matrix inversion
+
+
+
+							//Matrix inversion
+
 
 void matrix_init::invert(){
 //Identity Matrix
-
+vcc arrcopy=arr;
 vcc Iden(arr.size(),vector<double>(arr.size()));
 try{
 if(arr.size()!=arr[0].size()){cout<<"\n matrix is not square\n ";throw 345;}
@@ -101,12 +104,13 @@ for(int i=0;i<arr[0].size();i++){
 }
 
 //Row echelon form
-    if(arr.size()!=arr[0].size()){ throw 345; }
+    if(arr.size()!=arr[0].size()){arr=arrcopy;throw 345; }
 	else{
 	for(int i=0;i<arr.size();i++){ 
 		for(int k=0;k<arr.size();k++){
 			 if(k==i){
-			if(arr[k][i]==0){throw 000; }
+			if(arr[k][i]==0&&k==(arr.size()-1)){arr=arrcopy;throw 000; }      //if last diagonal elemnt is 0(others have been set 1)
+			else if(arr[k][i]==0){int p=0;while(arr[p][i]==0){p++;} addVector(arr[k],arr[p]);}   //if diagonal element is zero
 			else if(arr[k][i]!=1){double val=arr[k][i];multVector(arr[k],1/val);multVector(Iden[k],1/val);}
 			}
 			else if (k>i){
@@ -127,11 +131,6 @@ for(int j=0;j<arr.size();j++){cout<<Iden[i][j]<<" ";}
 		 }
 	}
 }
-}catch(int myNum){
-	cout<<"Error : "<<myNum<<endl;
-	if(myNum==345){cout<<"Matrix is not square, inverse does not existi\n";}
-	else{cout<<"Matirx not invertible, determinant is zero";}
-	}
 
 //Reduced Row echelon
 for(int i=arr.size()-1;i>=0;i--){
@@ -146,13 +145,62 @@ for(int i=arr.size()-1;i>=0;i--){
 }
 cout<<endl<<endl<<endl<<endl;
 swap(arr,Iden);
+}catch(int myNum){
+	cout<<"Error : "<<myNum<<endl;
+	if(myNum==345){cout<<"Matrix is not square, inverse does not existi\n";}
+	else{cout<<"Matirx not invertible, determinant is zero\n";}
+	}
+
 }
 
 
 
+                                                   //Linear Algebra
+
+
+vector<double> getX(vcc A,vcc B)
+{
+try{
+    if(A.size()!=A[0].size()){throw 000;}
+    if(A.size()!=B.size()){throw 001;}
+int l=A.size();
+vcc L(l,vector<double> (l) );vector<double> X(l);vcc Acopy=A;
+
+
+//initalise L
+for(int i=0;i<l;i++){
+	for(int k=0;k<l;k++){
+	if(k<i){L[k][i]=0;}
+	else if(k==i){L[k][i]=1;}
+	}
+}
 
 
 
+    for(int i=0;i<A[0].size();i++){
+    	for(int k=0;k<l;k++){
+		 if(k==i){
+			if(A[k][i]==0&&k==(l-1)){A=Acopy;throw 000; }      //if last diagonal elemnt is 0(others have been set 1)
+			else if(A[k][i]==0){int p=0;while(A[p][i]==0&&p<l){p++;if(p==l){throw 002;}} addVector(A[k],A[p]);}//ifdiagonalelement is0
+			}
+ 		else if(k>i)
+		{
+		vector<double> p=A[i];
+		multVector(p,1/A[i][i]);
+		double a=A[k][i];
+		multVector(p,-a);
+		L[k][i]=a;
+		addVector(A[k],p);
+		}
+	}
+    }
+   }
+catch(int myNum){
+	if(myNum==000){cout<<"A is not square";}
+	else if(myNum==001){cout<<"\n A and B dont have same rows\n";}
+	
+            }
+}
 
 
 

@@ -58,7 +58,7 @@ cout<<endl<<"performing operation multiplication"<<endl<<endl;
 matrix_init out2=M1*M2;
 out2.display();
 }
-else{cout<<"multiplication not possible";}
+else{cout<<"multiplication not possible\n";}
 
 M1.invert();
 cout<<"The inverse of "<<name1<<endl;
