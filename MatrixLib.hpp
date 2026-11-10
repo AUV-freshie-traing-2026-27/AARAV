@@ -47,7 +47,6 @@ public:
 	}
 
 //Inverse
-vcc Identity();
 void invert();
 };
 
