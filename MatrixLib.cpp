@@ -158,13 +158,13 @@ swap(arr,Iden);
                                                    //Linear Algebra
 
 
-vector<double> getX(vcc A,vcc B)
+vector<double> getX(vcc A,vector<double> B)
 {
 try{
     if(A.size()!=A[0].size()){throw 000;}
     if(A.size()!=B.size()){throw 001;}
 int l=A.size();
-vcc L(l,vector<double> (l) );vector<double> X(l);vcc Acopy=A;
+vcc L(l,vector<double> (l) );vcc Acopy=A;
 
 
 //initalise L
@@ -194,13 +194,44 @@ for(int i=0;i<l;i++){
 		}
 	}
     }
+
+for(int i=0;i<l;i++){
+	for(int j=0;j<l;j++){cout<<L[i][j]<<"\t";}
+	cout<<" | ";
+	for(int j=0;j<l;j++){cout<<A[i][j]<<"\t";}
+	cout<<endl;
+
    }
-catch(int myNum){
-	if(myNum==000){cout<<"A is not square";}
-	else if(myNum==001){cout<<"\n A and B dont have same rows\n";}
-	
-            }
+
+//LU decomposition completed
+//Solving 
+vector<double> Z(l);
+
+for(int n=0;n<l;n++){
+	double postsum=0;
+	for(int s=0;s<n;s++){postsum=postsum+L[n][s]*Z[s];}
+	Z[n] = (B[n]-postsum)/L[n][n];
+}
+cout<<endl;
+for(int i=0;i<l;i++){cout<<Z[i]<<" ";}
+cout<<endl;
+vector<double> X(l);
+
+for(int n=l-1;n>=0;n--){
+ 	double presum=0;
+	for(int s=l-1;s>n;s--){presum = presum + X[s]*A[n][s];}
+	X[n]=(Z[n]-presum)/A[n][n];
 }
 
+A=Acopy;
 
+return X;
+//try end
+}
+catch(int myNum){
+	if(myNum==000){cout<<"A is not square";}
+	else if(myNum==001){cout<<"\n A and B dont have same rows\n";}	
+            }
+
+}
 

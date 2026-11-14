@@ -52,5 +52,5 @@ void invert();
 };
 
 //Linear algebra
-vector<double> getX(vcc A, vcc B);
+vector<double> getX(vcc A, vector<double> B);
 #endif
