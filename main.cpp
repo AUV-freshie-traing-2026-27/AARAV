@@ -63,6 +63,17 @@ else{cout<<"multiplication not possible\n";}
 M1.invert();
 cout<<"The inverse of "<<name1<<endl;
 M1.display();
+M1.invert();
+
+if((M1.getMatrix())[0].size()==(M1.getMatrix()).size()){
+	cout<<"give RHS for equation made by A";
+	vector<double> rhs(M1.getMatrix().size());
+	for(int i=0;i<M1.getMatrix().size();i++){cin>>rhs[i];}
+	vector<double> answer=getX(M1.getMatrix(), rhs);
+	cout<<endl;
+	for( double x : answer){cout<<x<<" ";}
+}
+cout<<endl;
 return 0;
 }
 
