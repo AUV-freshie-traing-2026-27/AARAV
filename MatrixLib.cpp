@@ -186,8 +186,7 @@ for(int i=0;i<l;i++){
  		else if(k>i)
 		{
 		vector<double> p=A[i];
-		multVector(p,1/A[i][i]);
-		double a=A[k][i];
+		double a=A[k][i]/A[i][i];
 		multVector(p,-a);
 		L[k][i]=a;
 		addVector(A[k],p);
@@ -212,8 +211,6 @@ for(int n=0;n<l;n++){
 	for(int s=0;s<n;s++){postsum=postsum+L[n][s]*Z[s];}
 	Z[n] = (B[n]-postsum)/L[n][n];
 }
-cout<<endl;
-for(int i=0;i<l;i++){cout<<Z[i]<<" ";}
 cout<<endl;
 vector<double> X(l);
 
